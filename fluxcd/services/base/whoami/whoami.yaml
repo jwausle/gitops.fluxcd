@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: whoami
-          image: containous/whoami:latest
+          image: traefik/whoami:latest
           imagePullPolicy: Always
           ports:
             - name: http
