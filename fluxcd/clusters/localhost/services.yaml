@@ -15,4 +15,4 @@ spec:
   validation: client
   postBuild:
     substitute:
-      app_namespace: "mysaveid"
+      app_namespace: "test"
