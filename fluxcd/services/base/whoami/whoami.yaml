@@ -48,7 +48,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Path(`/whoami`)
+    - match: PathPrefix(`/whoami/`)
       kind: Rule
       middlewares:
         - name: strip-whoami
@@ -64,7 +64,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Path(`/whoami`)
+    - match: PathPrefix(`/whoami/`)
       kind: Rule
       middlewares:
         - name: strip-whoami
@@ -77,6 +77,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: strip-whoami
+
 spec:
   stripPrefix:
     prefixes:
