@@ -12,10 +12,10 @@ flux install
 # Setup git repository `cluster-deployment` as fluxcd source
 flux create source git flux-system \
   --git-implementation=libgit2 \
-  --url=https://dev.azure.com/mysaveid/mysaveid-deployment/_git/mysaveid-deployment \
+  --url=https://github.com/jwausle/gitops.fluxcd.git \
   --branch=${BRANCH} \
   --username=flux-system \
-  --password=d4ef27gg2ubn35pq5x4paajg6ihktu5jsebidbh6uclabgiqbmeq \
+  --password=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 \
   --interval=1m
 
 # Setup cluster configuration by name under `./fluxcd/clusters/`

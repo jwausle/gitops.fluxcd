@@ -4,7 +4,7 @@ namespace: ${traefik_namespace:=forgetToConfigure}
 resources:
 - traefik-namespace.yaml
 - traefik-install.yaml
-- traefik-customize.yaml
+- traefik-custom.yaml
 generatorOptions:
   disableNameSuffixHash: true
 secretGenerator:
