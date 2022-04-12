@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "whoami-helm-chart.fullname" . }}
+  labels:
+    app: {{ template "whoami-helm-chart.name" . }}
+    chart: {{ template "whoami-helm-chart.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ template "whoami-helm-chart.name" . }}
+    release: {{ .Release.Name }}

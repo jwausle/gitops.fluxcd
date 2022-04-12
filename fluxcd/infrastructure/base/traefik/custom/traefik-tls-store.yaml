@@ -1,0 +1,9 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: TLSStore
+metadata:
+  # traefik pod serach for 'default' store - https://doc.traefik.io/traefik/https/tls/
+  name: default
+
+spec:
+  defaultCertificate:
+    secretName: traefik-tls-certificate
