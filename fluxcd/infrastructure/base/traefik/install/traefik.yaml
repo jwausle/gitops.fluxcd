@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: traefik
+spec:
+  chart:
+    spec:
+      chart: traefik
+      sourceRef:
+        kind: HelmRepository
+        name: traefik
+      version: ${traefik_version:=forgetToConfigure}
+  interval: 1m0s
+  values:
+    additionalArguments:
+      - "--accesslog=true"
+      - "--log.level=DEBUG"
+      - "--serversTransport.insecureSkipVerify=true"
+
+    deployment:
+      replicas: 1
+
+    ingressRoute:
+      dashboard:
+        enabled: true

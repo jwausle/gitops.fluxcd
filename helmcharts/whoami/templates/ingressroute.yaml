@@ -1,0 +1,58 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ template "whoami.fullname" . }}
+  labels:
+    app: {{ template "whoami.name" . }}
+    chart: {{ template "whoami.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: PathPrefix(`/{{ .Values.app.path }}/`)
+      kind: Rule
+      middlewares:
+        - name: {{ template "whoami.fullname" . }}
+      services:
+        - name: {{ template "whoami.fullname" . }}
+          port: http
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ template "whoami.fullname" . }}-tls
+  labels:
+    app: {{ template "whoami.name" . }}
+    chart: {{ template "whoami.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: PathPrefix(`/{{ .Values.app.path }}/`)
+      kind: Rule
+      middlewares:
+        - name: {{ template "whoami.fullname" . }}
+      services:
+        - name: {{ template "whoami.fullname" . }}
+          port: http
+  tls: {}
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ template "whoami.fullname" . }}
+  labels:
+    app: {{ template "whoami.name" . }}
+    chart: {{ template "whoami.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+
+spec:
+  stripPrefix:
+    prefixes:
+      - /{{ .Values.app.path }}
+      - /{{ .Values.app.path }}/

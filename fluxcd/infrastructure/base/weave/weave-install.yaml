@@ -1,0 +1,20 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: weave-install
+  namespace: ${weave_namespace:=forgetToConfigure}
+spec:
+  interval: 1m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  path: ./fluxcd/infrastructure/base/weave/install
+  targetNamespace: ${weave_namespace:=forgetToConfigure}
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: weave
+      namespace: ${weave_namespace:=forgetToConfigure}
+  timeout: 2m
+  prune: true

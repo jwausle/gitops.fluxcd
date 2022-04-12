@@ -1,0 +1,16 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: whoami-helmrelease-indirect-1
+spec:
+  gitImplementation: libgit2
+  interval: 1m
+  url: https://github.com/jwausle/gitops.fluxcd.git
+  ref:
+    branch: ${app_branch:=forgetToConfigure}
+  timeout: 20s
+  ignore: |
+    # exclude all
+    /*
+    # include deploy dir
+    !/helmcharts
