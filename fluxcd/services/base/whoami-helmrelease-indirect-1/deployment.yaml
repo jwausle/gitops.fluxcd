@@ -1,0 +1,28 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: whoami-helmrelease-indirect-1
+  namespace: ${app_namespace:=forgetToConfigure}
+spec:
+  interval: 1m
+  dependsOn:
+    - name: whoami-helmrelease-indirect-2
+  sourceRef:
+    kind: GitRepository
+    name: whoami-helmrelease-indirect-1
+  path: ./helmcharts/helmreleases/indirect-1
+  targetNamespace: ${app_namespace:=forgetToConfigure}
+  # patches:
+  #   - patch: |
+  #       - op: replace
+  #         path: /spec/chart/spec/sourceRef/namespace
+  #         value: ${app_namespace:=forgetToConfigure}
+  #     target:
+  #         kind: HelmRelease
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: whoami-helmrelease-indirect-1
+      namespace: ${app_namespace:=forgetToConfigure}
+  timeout: 1m
+  prune: true

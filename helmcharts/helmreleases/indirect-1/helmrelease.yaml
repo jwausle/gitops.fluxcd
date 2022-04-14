@@ -1,0 +1,15 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: whoami-helmrelease-indirect-1
+spec:
+  chart:
+    spec:
+      chart: helmcharts/whoami
+      sourceRef:
+        kind: GitRepository
+        name: whoami-helmrelease-indirect-1
+  interval: 1m0s
+  values:
+    app:
+      path: "whoami-helm3"

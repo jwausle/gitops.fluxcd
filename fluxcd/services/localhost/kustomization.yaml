@@ -5,9 +5,10 @@ resources:
   - namespace.yaml
   - ../base/whoami
   - ../base/whoami-helmrelease
-  - ../base/whoami-helmrelease-indirect
+  - ../base/whoami-helmrelease-indirect-1
+  - ../base/whoami-helmrelease-indirect-2  
 generatorOptions:
-  disableNameSuffixHash: true  
+  disableNameSuffixHash: true
 secretGenerator:
   - name: flux-system
     literals:

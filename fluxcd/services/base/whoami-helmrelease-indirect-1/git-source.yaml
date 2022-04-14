@@ -1,7 +1,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: GitRepository
 metadata:
-  name: whoami-helmrelease-indirect
+  name: whoami-helmrelease-indirect-1
 spec:
   interval: 1m
   url: https://github.com/jwausle/gitops.fluxcd.git
