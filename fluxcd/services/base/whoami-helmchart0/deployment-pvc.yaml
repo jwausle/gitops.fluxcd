@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: core-pv-claim
+spec:
+  storageClassName: ${cluster_storage_class_name:=forgetToConfigure}
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi

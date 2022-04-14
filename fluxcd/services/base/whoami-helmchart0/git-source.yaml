@@ -1,0 +1,18 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: core
+spec:
+  interval: 1m
+  url: https://dev.azure.com/mysaveid/core/_git/core
+  ref:
+    branch: master
+  secretRef:
+    name: gitcred
+  gitImplementation: libgit2
+  timeout: 20s
+  ignore: |
+    # exclude all
+    /*
+    # include deploy dir
+    !/kubernetes

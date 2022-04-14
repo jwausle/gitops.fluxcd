@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "whoami-helm-chart.fullname" . }}
+  name: {{ template "whoami.fullname" . }}
   labels:
-    app: {{ template "whoami-helm-chart.name" . }}
-    chart: {{ template "whoami-helm-chart.chart" . }}
+    app: {{ template "whoami.name" . }}
+    chart: {{ template "whoami.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -15,5 +15,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: {{ template "whoami-helm-chart.name" . }}
+    app: {{ template "whoami.name" . }}
     release: {{ .Release.Name }}

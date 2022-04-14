@@ -4,3 +4,4 @@ namespace: ${app_namespace:=forgetToConfigure}
 resources:
   - namespace.yaml
   - ../base/whoami
+  - ../base/whoami-helmchart
