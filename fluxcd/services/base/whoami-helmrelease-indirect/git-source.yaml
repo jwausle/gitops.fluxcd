@@ -1,18 +1,18 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: GitRepository
 metadata:
-  name: core
+  name: whoami-helmrelease-indirect
 spec:
   interval: 1m
-  url: https://dev.azure.com/mysaveid/core/_git/core
+  url: https://github.com/jwausle/gitops.fluxcd.git
   ref:
     branch: master
   secretRef:
-    name: gitcred
+    name: flux-system
   gitImplementation: libgit2
   timeout: 20s
   ignore: |
     # exclude all
     /*
     # include deploy dir
-    !/kubernetes
+    !/helmcharts

@@ -1,8 +1,0 @@
-{
-  "auths": {
-    "acr.azurecr.io": {
-      "username": "username",
-      "password": "userpass"
-    }
-  }
-}
