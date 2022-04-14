@@ -15,4 +15,4 @@ spec:
   validation: client
   postBuild:
     substitute:
-      app_namespace: "test"
+      app_namespace: "example"
