@@ -23,12 +23,12 @@ bash scripts/run-cluster-local.sh
  * Connect `fluxcd/clusters/localhost`
  * Flux deploy the connected configuration
 3. Loadbalancer/Traefik is installed
-4. Fluxcd UI - weaver is available https://admin:admin@localhost/
+4. Fluxcd UI - weaver is available https://localhost/ (admin:admin)
 
 
 ## Demo
 
-### Enable services
+### 1) Enable services
 
 * namespace is created
 * whoami pod is installed
@@ -37,7 +37,7 @@ bash scripts/run-cluster-local.sh
 curl -k https://localhost/whoami/test
 ```
 
-### Enable service/whoami-helmrelease
+### 2) Enable service/whoami-helmrelease
 
 * helmchart is installed
 
@@ -45,12 +45,12 @@ curl -k https://localhost/whoami/test
 curl -k https://localhost/whoami-helm2/test
 ```
 
-### Enable service/whoami-helmrelease-indirect-1
+### 3) Enable service/whoami-helmrelease-indirect-1
 
 * kustomization is not read
 * because dependsOn (whoami-helmrelease-indirect-2)
 
-### Enable service/whoami-helmrelease-indirect-2
+### 4) Enable service/whoami-helmrelease-indirect-2
 
 * whoami-helmrelease-indirect-1 is installed
 * whoami-helmrelease-indirect-2 is installed
@@ -58,4 +58,18 @@ curl -k https://localhost/whoami-helm2/test
 ```
 curl -k https://localhost/whoami-helm3/test
 curl -k https://localhost/whoami-helm4/test
+```
+
+### 5) Patch whoami-helmrelease-indirect-1 path `test`
+
+```
+curl -k https://localhost/test/test
+curl -k https://localhost/whoami-helm3/test (fail)
+```
+
+### 6) Patch whoami-helmrelease path `test2`
+
+```
+curl -k https://localhost/test2/test
+curl -k https://localhost/whoami-helm2/test (fail)
 ```
