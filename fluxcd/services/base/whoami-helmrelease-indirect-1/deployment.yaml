@@ -12,13 +12,13 @@ spec:
     name: whoami-helmrelease-indirect-1
   path: ./helmcharts/helmreleases/indirect-1
   targetNamespace: ${app_namespace:=forgetToConfigure}
-  # patches:
-  #   - patch: |
-  #       - op: replace
-  #         path: /spec/chart/spec/sourceRef/namespace
-  #         value: ${app_namespace:=forgetToConfigure}
-  #     target:
-  #         kind: HelmRelease
+  patches:
+    - patch: |
+        - op: replace
+          path: /spec/values/app/path
+          value: test
+      target:
+          kind: HelmRelease
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
