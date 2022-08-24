@@ -6,4 +6,4 @@ resources:
   - ../base/whoami
   - ../base/whoami-helmrelease
   - ../base/whoami-helmrelease-indirect-1
-#  - ../base/whoami-helmrelease-indirect-2
+  - ../base/whoami-helmrelease-indirect-2
