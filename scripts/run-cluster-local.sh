@@ -23,7 +23,7 @@ sudo docker run \
   -e K3S_KUBECONFIG_MODE=666 \
   -v $(pwd)/.k3s:/output \
   -v $(pwd)/.k3s-pv:/var/lib/rancher/k3s/storage \
-  --privileged "rancher/k3s:v1.22.5-k3s2" \
+  --privileged "rancher/k3s:v1.27.3-k3s1" \
   server --cluster-init --disable=traefik
 
 sleep 1
